@@ -15,7 +15,12 @@
         keep track of who changed what on which system — without wasting anyones
         time.
     </p>
-    <p><a class="btn btn-primary btn-large pull-right js-registration-trigger">Register now</a></p>
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <p>
+            <a class="btn btn-primary btn-large pull-right js-registration-trigger">Register now</a>
+        </p>
+    {% endif %}
+
 </div>
 
 <div class="modal js-registration-form is-hidden">
