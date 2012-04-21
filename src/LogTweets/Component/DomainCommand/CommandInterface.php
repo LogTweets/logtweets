@@ -1,7 +1,7 @@
 <?php
 namespace LogTweets\Component\DomainCommand;
 
-class CommandInterface
+interface CommandInterface
 {
     public function execute(InputArgumentBag $argument);
 
