@@ -21,11 +21,12 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new LogTweets\Bundle\LayoutBundle\LogTweetsLayoutBundle(),
             new LogTweets\Bundle\BackboneJsBundle\LogTweetsBackboneJsBundle(),
             new LogTweets\Bundle\OrganisationBundle\LogTweetsOrganisationBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
+            new LogTweets\Bundle\LogEntryBundle\LogEntryBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
