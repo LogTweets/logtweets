@@ -37,7 +37,7 @@ class Organisation
     private $founder;
 
     /**
-      * @ORM\OneToMany(targetEntity="LogTweets\Bundle\OrganisationBundle\Entity\User")
+      * @ORM\OneToMany(targetEntity="LogTweets\Bundle\OrganisationBundle\Entity\User", mappedBy="Organisation")
       * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
       */
     private $members;
