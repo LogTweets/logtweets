@@ -1,5 +1,5 @@
 <?php
-namespace LogTweets\Component\Service\Command;
+namespace LogTweets\Component\DomainCommand;
 
 class CommandInterface
 {

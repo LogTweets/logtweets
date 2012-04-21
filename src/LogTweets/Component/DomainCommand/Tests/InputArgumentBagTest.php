@@ -1,8 +1,8 @@
 <?php
-namespace LogTweets\Component\Tests\Service\Command;
+namespace LogTweets\Component\Tests\DomainCommand;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use LogTweets\Component\Service\Command\InputArgumentBag;
+use LogTweets\Component\DomainCommand\InputArgumentBag;
 use stdClass;
 
 class InputArgumentTest extends TestCase
