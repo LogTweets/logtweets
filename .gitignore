@@ -11,3 +11,4 @@ install-composer.php
 .idea
 web/.htaccess
 app/config/parameters.yml
+composer.lock
