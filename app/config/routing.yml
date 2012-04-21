@@ -7,6 +7,10 @@ _organisation:
     resource: "@LogTweetsOrganisationBundle/Resources/config/routing/organisation.xml"
     prefix:   /
 
+_server:
+    resource: "@LogTweetsOrganisationBundle/Controller"
+    prefix:   /server
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

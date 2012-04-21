@@ -1,0 +1,41 @@
+{% extends 'LogTweetsLayoutBundle:Layout:base.html.twig' %}
+
+{% block headline %}Servers{% endblock headline%}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Servername</th>
+        <th>Group</th>
+        <th>Created On</th>
+        <th>Updated On</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    </tbody>
+</table>
+
+<form method="post" action="{{ path('LogTweetsOrganisationBundle_Server_add') }}" class="form-horizontal">
+
+    <div class="control-group">
+        <label class="control-label" for="servername">Servername</label>
+
+        <div class="controls">
+            <input class="input-xlarge" type="text" id="servername" name="_servername" value=""/>
+            <input class="btn btn-success" type="submit" id="_submit" name="_submit" value="New"/>
+        </div>
+    </div>
+
+</form>
+
+{% endblock content %}

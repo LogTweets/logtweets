@@ -1,5 +1,5 @@
 {
-    "hash": "c9472b7608d40612ebbd1c132f0d92d7",
+    "hash": "202201d8994c914e755dad7dc3582d59",
     "packages": [
         {
             "package": "doctrine/common",
@@ -32,6 +32,11 @@
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
             "source-reference": "59caf8902291b42e86dc8b4ea1aa19e9f30afff8"
+        },
+        {
+            "package": "fzaninotto/faker",
+            "version": "dev-master",
+            "source-reference": "93ad20eb61f9b1aef188e5c2de99d1a651ef690e"
         },
         {
             "package": "hearsay/require-js-bundle",
@@ -141,6 +146,11 @@
             "package": "twitter/bootstrap",
             "version": "master",
             "source-reference": "master"
+        },
+        {
+            "package": "willdurand/faker-bundle",
+            "version": "dev-master",
+            "source-reference": "19624486caf20ea978e8b4aa47b215af88b763be"
         }
     ],
     "packages-dev": null,
