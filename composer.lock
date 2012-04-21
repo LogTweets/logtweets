@@ -134,7 +134,7 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "fa0b0985c3b3b62281ea938f01eadf04cdbeaa3f",
+            "source-reference": "07a953e01622bf2d3f57ac4fcfa4724fa2143075",
             "alias": "1.7.9999999.9999999-dev"
         },
         {
