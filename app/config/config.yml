@@ -68,4 +68,4 @@ mopa_bootstrap:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Acme\UserBundle\Entity\User
+    user_class: LogTweets\Bundle\OrganisationBundle\Entity\User

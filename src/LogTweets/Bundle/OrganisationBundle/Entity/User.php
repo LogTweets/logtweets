@@ -17,6 +17,11 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="LogTweets\Bundle\OrganisationBundle\Entity\Organisation")
+     */
+    protected $organisation;
+
     public function __construct()
     {
         parent::__construct();
