@@ -34,30 +34,23 @@ class Organisation
      */
     private $updatedOn;
 
-
     private $founder;
 
     private $members;
 
-    public function __construct($name)
-    {
-        $this->name = $name;
-        $this->createdOn = new DateTime();
-        $this->updatedOn = clone $this->createdOn;
-    }
-
-/*
     public function __construct(MemberInterface $founder)
     {
         $this->founder = $founder;
         $this->members = new ArrayCollection();
-    }*/
+        $this->createdOn = new DateTime();
+        $this->updatedOn = new DateTime();
+    }
 
     public function getFounder()
     {
         return $this->founder;
     }
-    
+
     public function addMember(MemberInterface $member)
     {
         if ($this->members->contains($member)) {
@@ -78,5 +71,15 @@ class Organisation
     public function getMembers()
     {
         return $this->members->toArray();
+    }
+
+    public function getCreatedOn()
+    {
+        return $this->createdOn;
+    }
+
+    public function getUpdatedOn()
+    {
+        return $this->updatedOn;
     }
 }

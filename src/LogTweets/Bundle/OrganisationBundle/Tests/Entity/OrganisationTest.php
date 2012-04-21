@@ -23,6 +23,13 @@ class OrganisationTest extends TestCase
         $this->assertSame($this->founder, $organisation->getFounder());
     }
 
+    public function testOrganisationHasCreatedOnAndUpdatedOn()
+    {
+        $organisation = new Organisation($this->founder);
+        $this->assertInstanceOf('DateTime', $organisation->getCreatedOn());
+        $this->assertInstanceOf('DateTime', $organisation->getUpdatedOn());
+    }
+
     public function testAddingMembersToTheOrganisation()
     {
         $organisation = new Organisation($this->founder);
