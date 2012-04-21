@@ -13,28 +13,28 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
         <div class="control-group">
-            <label class="control-label" for="username">Username</label>
+            <label class="control-label" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
             <div class="controls">
                 <input class="input-xlarge" type="text" id="username" name="_username" value="{{ last_username }}" />
             </div>
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="password">Password</label>
+            <label class="control-label" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
             <div class="controls">
                 <input class="input-xlarge" type="password" id="password" name="_password" />
             </div>
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="remember_me">Remember me</label>
+            <label class="control-label" for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
             <div class="controls">
                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
             </div>
         </div>
 
         <div class="form-actions">
-            <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Submit" />
+            <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
         </div>
 
     </form>
