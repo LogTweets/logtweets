@@ -34,7 +34,6 @@ class Organisation
      */
     private $updatedOn;
 
-
     private $founder;
 
     private $members;
