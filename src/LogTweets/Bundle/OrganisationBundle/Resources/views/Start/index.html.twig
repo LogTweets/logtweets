@@ -1,43 +1,125 @@
 {% extends 'LogTweetsLayoutBundle:Layout:base.html.twig' %}
 
-{% block headline %}Login{% endblock headline%}
+{% block page_header %}
+{% endblock page_header %}
 
 {% block content %}
-{% block fos_user_content %}
-    {% if error %}
-    <div>{{ error }}</div>
+<div class="hero-unit">
+    <h1>Change <em>you</em> can trace back</h1>
+    <p>
+        <abbr title="Good afternoon">Guten Tag</abbr> fellow DevOp, honestly, when was the last time you spend hours
+        tackling a misbehaving system just to find out your colleague fixed the
+        same issue the day before?
+        Or you wondered why this setting has changed and whom can you ask about
+        it? And most important: who needs stick-beating (hey Theo)? LogTweets helps you to
+        keep track of who changed what on which system — without wasting anyones
+        time.
+    </p>
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <p>
+            <a class="btn btn-primary btn-large pull-right js-registration-trigger">Register now</a>
+        </p>
+    {% else %}
+        <p class="pull-right">You're logged in</p>
     {% endif %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
+</div>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-        <div class="control-group">
-            <label class="control-label" for="username">Username</label>
-            <div class="controls">
-                <input class="input-xlarge" type="text" id="username" name="_username" value="{{ last_username }}" />
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="password">Password</label>
-            <div class="controls">
-                <input class="input-xlarge" type="password" id="password" name="_password" />
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="remember_me">Remember me</label>
-            <div class="controls">
-                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Submit" />
-        </div>
-
-    </form>
-    {% endblock fos_user_content %}
-
+<div class="modal js-registration-form is-hidden">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Register now</h3>
+    </div>
+    <div class="modal-body js-registration-form-container">
+    </div>
+</div>
 {% endblock content %}
+
+
+{% block javascript %}
+<script>
+(function($) {
+
+var RegistrationView = Backbone.View.extend({
+    el: $('body'),
+
+    events: {
+        'click .js-registration-trigger': 'openRegistrationWindow',
+        'click .js-registration-submit': 'register',
+        'keypress .js-registration-form-container input[name=organisation]': 'onOrganisationInput'
+    },
+
+    initialize: function() {
+        _.bindAll(this, 'openRegistrationWindow', 'register', 'onOrganisationInput');
+        this.registration = new RegistrationModel();
+    },
+
+    openRegistrationWindow: function() {
+        this.form = new Backbone.Form({model: this.registration}).render();
+        $(this.form.el).append(
+            '<button type="submit" class="btn btn-primary pull-right js-registration-submit">Register</button>'
+        );
+        $('.js-registration-form-container').html(this.form.el);
+        $('.js-registration-form').modal();
+    },
+
+    register: function(event) {
+        event.preventDefault();
+
+        this.form.commit();
+        //this.registration.save();
+    },
+
+    onOrganisationInput: function(event) {
+        var organisationName = $(event.target).attr('value')
+                             + String.fromCharCode(event.keyCode);
+        var path = organisationName.replace(/[^\w\d\s]/g, '')
+                                  .toLowerCase()
+                                  .replace(/\s+/, '-');
+
+        $(event.target).closest('.controls')
+                       .find('.help-block')
+                       .html('Your URL: logtweets.com/organisation/' + path);
+    }
+});
+
+var RegistrationModel = Backbone.Model.extend({
+    schema: {
+        organisation: {
+            dataType: 'text',
+            validators: ['required'],
+            editorAttrs: {
+                placeholder: 'Give your organisation a name'
+            },
+            help: '&nbsp;'
+        },
+        email: {
+            dataType: 'email',
+            validators: ['required', 'email'],
+            editorAttrs: {
+                placeholder: 'How can we reach you?'
+            }
+        },
+        name: {
+            dataType: 'text',
+            validators: ['required'],
+            editorAttrs: {
+                placeholder: 'How should we address you?'
+            }
+        },
+        password: {
+            dataType: 'password',
+            validators: ['required'],
+            editorAttrs: {
+                placeholder: '"secret" is always a good idea'
+            }
+        }
+    }
+});
+
+var view = new RegistrationView();
+
+})(jQuery);
+</script>
+
+{% endblock javascript %}

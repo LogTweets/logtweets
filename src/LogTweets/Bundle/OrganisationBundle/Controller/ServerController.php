@@ -43,9 +43,6 @@ class ServerController extends Controller
         $em->persist($product);
         $em->flush();
 
-
-
-        
         return array( '' );
     }
 
