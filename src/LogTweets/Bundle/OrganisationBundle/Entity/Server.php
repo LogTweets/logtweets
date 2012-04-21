@@ -24,6 +24,12 @@ class Server
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="LogTweets\Bundle\OrganisationBundle\Entity\ServerGroup")
+     * @ORM\JoinColumn(name="servergroup_id", referencedColumnName="servergroup_id")
+     */
+    protected $group;
+
+    /**
      * @var @ORM\Column(type="datetime", name="server_created_on")
      */
     private $createdOn;
@@ -33,7 +39,7 @@ class Server
      */
     private $updatedOn;
 
-    public function __construct(User $founder)
+    public function __construct()
     {
         $this->createdOn = new DateTime();
         $this->updatedOn = new DateTime();
@@ -47,6 +53,22 @@ class Server
     public function getUpdatedOn()
     {
         return $this->updatedOn;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName( $name )
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
 }
