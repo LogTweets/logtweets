@@ -3,17 +3,21 @@ namespace LogTweets\Bundle\OrganisationBundle\Tests\Entity;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use LogTweets\Bundle\OrganisationBundle\Entity\Organisation;
+use LogTweets\Bundle\OrganisationBundle\Entity\User;
 use DomainException;
 
 class OrganisationTest extends TestCase
 {
+
+    private $founder, $memberA, $memberB;
+
     public function setUp()
     {
-        $this->founder = $this->getMockBuilder('LogTweets\Bundle\OrganisationBundle\Entity\MemberInterface')
+        $this->founder = $this->getMockBuilder('LogTweets\Bundle\OrganisationBundle\Entity\User')
                               ->getMock();
-        $this->memberA = $this->getMockBuilder('LogTweets\Bundle\OrganisationBundle\Entity\MemberInterface')
+        $this->memberA = $this->getMockBuilder('LogTweets\Bundle\OrganisationBundle\Entity\User')
                               ->getMock();
-        $this->memberB = $this->getMockBuilder('LogTweets\Bundle\OrganisationBundle\Entity\MemberInterface')
+        $this->memberB = $this->getMockBuilder('LogTweets\Bundle\OrganisationBundle\Entity\User')
                               ->getMock();
     }
 
@@ -58,5 +62,19 @@ class OrganisationTest extends TestCase
         } catch (DomainException $e) {
             $this->assertSame('Cannot remove member from the organisation. Not a member', $e->getMessage());
         }
+    }
+
+    public function testAddingUserToTheOrganisation()
+    {
+
+        $user = new User();
+        $user->setUsername('testuser');
+        $user->setEmail('test@example.org');
+
+        $organisation = new Organisation($this->founder);
+        $organisation->addMember($user);
+
+        $this->assertInternalType('array', $organisation->getMembers());
+        $this->assertCount(1, $organisation->getMembers());
     }
 }

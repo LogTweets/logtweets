@@ -36,9 +36,13 @@ class Organisation
 
     private $founder;
 
+    /**
+      * @ORM\OneToMany(targetEntity="LogTweets\Bundle\OrganisationBundle\Entity\User")
+      * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+      */
     private $members;
 
-    public function __construct(MemberInterface $founder)
+    public function __construct(User $founder)
     {
         $this->founder = $founder;
         $this->members = new ArrayCollection();
@@ -51,7 +55,7 @@ class Organisation
         return $this->founder;
     }
 
-    public function addMember(MemberInterface $member)
+    public function addMember(User $member)
     {
         if ($this->members->contains($member)) {
             throw new DomainException('Already a member of the organisation');
@@ -60,7 +64,7 @@ class Organisation
         $this->members->add($member);
     }
 
-    public function removeMember(MemberInterface $member)
+    public function removeMember(User $member)
     {
         if (!$this->members->contains($member)) {
             throw new DomainException('Cannot remove member from the organisation. Not a member');
@@ -82,4 +86,5 @@ class Organisation
     {
         return $this->updatedOn;
     }
+
 }

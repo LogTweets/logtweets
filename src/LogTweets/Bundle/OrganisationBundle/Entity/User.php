@@ -15,7 +15,7 @@ class User extends BaseUser
      * @ORM\Column(type="integer", name="user_id")
      * @ORM\GeneratedValue
      */
-    protected $id;
+    protected $user_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="LogTweets\Bundle\OrganisationBundle\Entity\Organisation")
