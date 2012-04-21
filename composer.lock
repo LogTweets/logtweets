@@ -1,5 +1,5 @@
 {
-    "hash": "9af5078bb4710be14b3a3a9ba014db46",
+    "hash": "c9472b7608d40612ebbd1c132f0d92d7",
     "packages": [
         {
             "package": "doctrine/common",
@@ -27,6 +27,11 @@
         {
             "package": "doctrine/orm",
             "version": "2.2.0"
+        },
+        {
+            "package": "friendsofsymfony/user-bundle",
+            "version": "dev-master",
+            "source-reference": "59caf8902291b42e86dc8b4ea1aa19e9f30afff8"
         },
         {
             "package": "hearsay/require-js-bundle",
@@ -118,7 +123,7 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "6c714095fa3e74c4a5466037f02e1845b9130d35",
+            "source-reference": "03ad8c932db16ecf8f595004331436a5e02ae656",
             "alias": "2.1.9999999.9999999-dev"
         },
         {
