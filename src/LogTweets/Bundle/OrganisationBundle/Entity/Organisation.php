@@ -3,52 +3,76 @@ namespace LogTweets\Bundle\OrganisationBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use DomainException;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="organisations")
+ * @ORM\Table(name="organisation")
  */
 class Organisation
 {
-
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer", name="organisation_id")
+     **/
+    private $id;
+
+    /**
+     * @var @ORM\Column(type="string", name="organisation_name")
      */
-    protected $id;
+    private $name;
+
+    /**
+     * @var @ORM\Column(type="datetime", name="organisation_created_on")
+     */
+    private $createdOn;
+
+    /**
+     * @var @ORM\Column(type="datetime", name="organisation_updated_on")
+     */
+    private $updatedOn;
+
 
     private $founder;
 
     private $members;
 
-    public function __construct( MemberInterface $founder )
+    public function __construct($name)
+    {
+        $this->name = $name;
+        $this->createdOn = new DateTime();
+        $this->updatedOn = clone $this->createdOn;
+    }
+
+/*
+    public function __construct(MemberInterface $founder)
     {
         $this->founder = $founder;
         $this->members = new ArrayCollection();
-    }
+    }*/
 
     public function getFounder()
     {
         return $this->founder;
     }
-
-    public function addMember( MemberInterface $member )
+    
+    public function addMember(MemberInterface $member)
     {
-        if ( $this->members->contains( $member ) ) {
-            throw new DomainException( 'Already a member of the organisation' );
+        if ($this->members->contains($member)) {
+            throw new DomainException('Already a member of the organisation');
         }
 
-        $this->members->add( $member );
+        $this->members->add($member);
     }
 
-    public function removeMember( MemberInterface $member )
+    public function removeMember(MemberInterface $member)
     {
-        if ( !$this->members->contains( $member ) ) {
-            throw new DomainException( 'Cannot remove member from the organisation. Not a member' );
+        if (!$this->members->contains($member)) {
+            throw new DomainException('Cannot remove member from the organisation. Not a member');
         }
-        $this->members->removeElement( $member );
+        $this->members->removeElement($member);
     }
 
     public function getMembers()
