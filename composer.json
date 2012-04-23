@@ -24,7 +24,7 @@
         "hearsay/require-js-bundle": "master",
         "doctrine/doctrine-migrations-bundle": "master",
         "willdurand/faker-bundle": "dev-master",
-	"friendsofsymfony/user-bundle": "*"
+	    "friendsofsymfony/user-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [
